@@ -1,6 +1,6 @@
 The MIT License
 
-Copyright (c) Zach Holman, http://zachholman.com
+Copyright (c) José Henrique Targino Dias Góis, http://josegois.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
