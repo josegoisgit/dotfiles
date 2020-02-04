@@ -1,0 +1,22 @@
+n = 5;
+
+chord_vector = [0 2 4 5 7 9 11 12];
+
+freq_fcn = @(n) 440*2.^(n/12);
+
+
+
+t0 = 0;
+tf = 1.5;
+srate = 44000;
+
+time = t0:(1/srate):tf;
+
+freq_ve
+frequencies = freq_fcn(freq_vector);
+waveform = sin(2*pi*frequencies'*time);
+waveform = sum(waveform);
+
+waveform = waveform ./ max(abs(waveform));
+sound(waveform,srate)
+
