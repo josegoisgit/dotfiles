@@ -1,0 +1,17 @@
+#
+# ~/.bashrc
+#
+
+echo running $0
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+GREP_OPTIONS='--color=auto'
+alias ls='ls --color=auto'
+alias tmuxa='tmux new-session -t aperture'
+PS1='[\u@\h \W]\$ '
+printf '\033[40m'
+
+#zsh
+#tmux
+#tmux -2 -c /usr/bin/zsh

@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/josegois'
+let g:netrw_dirhist_5='/home/josegois/Documents'
+let g:netrw_dirhist_4='/home/josegois/Github/dotfiles/tmux/tmux.symlink/plugins'
+let g:netrw_dirhist_3='/home/josegois/Github/dotfiles/tmux/tmux.symlink'
+let g:netrw_dirhist_2='/home/josegois/Github/dotfiles/tmux/tmux.symlink/plugins'
+let g:netrw_dirhist_1='/home/josegois/Github/dotfiles/tmux'
+let g:netrw_dirhist_0='/home/josegois/Github/dotfiles'
+let g:netrw_dirhist_9='/home/josegois/Github/dotfiles/zsh'
+let g:netrw_dirhist_8='/home/josegois/Github/dotfiles'
+let g:netrw_dirhist_7='/home/josegois/Github'

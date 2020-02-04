@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-#
 # bootstrap installs things.
 
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
-
+ERROR_MESSAGE='No fail'
 set -e
 
 echo ''
@@ -22,83 +21,90 @@ success () {
 }
 
 fail () {
-  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+  printf "\r\033[2K  [\033[0;31mFAIL:\t"$ERROR_MESSAGE"\033[0m] $1\n"
   echo ''
   exit
 }
 
+# Function that write the git/gitconfig.local.symlink file, if it doesn't exist.
+# For more see link bellow: https://git-scm.com/docs/git-config
+# Função que escreve o arquivo git/gitconfig.local.symlink, se este não existir.
+# Para mais informações leia o texto: https://git-scm.com/docs/git-config
 setup_gitconfig () {
   if ! [ -f git/gitconfig.local.symlink ]
   then
     info 'setup gitconfig'
 
+    # Selects the helper that stores git credentials 
+    #git_credential='store'
     git_credential='cache'
     if [ "$(uname -s)" == "Darwin" ]
     then
       git_credential='osxkeychain'
     fi
 
+    # Read git user.name and user.email
     user ' - What is your github author name?'
     read -e git_authorname
     user ' - What is your github author email?'
     read -e git_authoremail
 
-    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.local.symlink.example > git/gitconfig.local.symlink
+    # Replace the template file with provided information.
+    sed -e "s/AUTHORNAME/$git_authorname/g" \
+    sed -e "s/AUTHOREMAIL/$git_authoremail/g" \
+    sed -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" \
+    git/gitconfig.local.symlink.example > git/gitconfig.local.symlink
 
     success 'gitconfig'
   fi
 }
 
-
+# Function that, provided with two file path arguments makes a link copy of the
+# first (source) to the second (destination).
 link_file () {
   local src=$1 dst=$2
 
   local overwrite= backup= skip=
   local action=
 
-  if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
+  if [ -f "$dst" -o -d "$dst" -o -L "$dst" ];
   then
-
-    if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]
-    then
-
+    if  [ "$same_all" == "false" ]; then
       local currentSrc="$(readlink $dst)"
-
-      if [ "$currentSrc" == "$src" ]
-      then
-
-        skip=true;
-
+      if [ "$currentSrc" == "$src" ]; then
+        skip=true
       else
-
         user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
         [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
         read -n 1 action
 
         case "$action" in
-          o )
+          o|O )
             overwrite=true;;
           O )
-            overwrite_all=true;;
-          b )
+	    same_all=true;;
+          b|B )
             backup=true;;
           B )
-            backup_all=true;;
-          s )
+	    same_all=true;;
+          s|S )
             skip=true;;
           S )
-            skip_all=true;;
+	    same_all=true;;
           * )
-            ;;
+		 ;;
         esac
-
       fi
-
     fi
 
-    overwrite=${overwrite:-$overwrite_all}
-    backup=${backup:-$backup_all}
-    skip=${skip:-$skip_all}
+    overwrite=${overwrite}
+    backup=${backup}
+    skip=${skip}
+    
+    if [ "$skip" == "true" ]
+    then
+      success "skipped $src"
+    fi
 
     if [ "$overwrite" == "true" ]
     then
@@ -111,14 +117,9 @@ link_file () {
       mv "$dst" "${dst}.backup"
       success "moved $dst to ${dst}.backup"
     fi
-
-    if [ "$skip" == "true" ]
-    then
-      success "skipped $src"
-    fi
   fi
 
-  if [ "$skip" != "true" ]  # "false" or empty
+  if [ "$skip" != "true" ]
   then
     ln -s "$1" "$2"
     success "linked $1 to $2"
@@ -128,27 +129,40 @@ link_file () {
 install_dotfiles () {
   info 'installing dotfiles'
 
-  local overwrite_all=false backup_all=false skip_all=false
+  local same_all=false
 
   for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
   do
+
     dst="$HOME/.$(basename "${src%.*}")"
     link_file "$src" "$dst"
+
   done
 }
 
+curl -L git.io/antigen > $DOTFILES_ROOT/zsh/antigen.zsh.symlink
+success "download antigen.zsh.symlink"
+
+
 setup_gitconfig
+
 install_dotfiles
 
 # If we're on a Mac, let's install and setup homebrew.
 if [ "$(uname -s)" == "Darwin" ]
 then
+
   info "installing dependencies"
+
   if source bin/dot | while read -r data; do info "$data"; done
   then
+
     success "dependencies installed"
+
   else
+
     fail "error installing dependencies"
+
   fi
 fi
 

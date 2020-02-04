@@ -1,0 +1,59 @@
+# Prefix
+#unbind C-b
+#set -g prefix '
+#bind ' send-prefix
+#set-option -g prefix '
+
+#set prefix '
+unbind C-b
+set-option -g prefix "'"
+bind "'" send-prefix
+
+# New window
+unbind '"'
+unbind %
+bind '"' split-window -c "#{pane_current_path}"
+bind v split-window -h -c "#{pane_current_path}"
+bind c new-window -c "#{pane_current_path}"
+
+# Easy Config Reloads
+bind r source-file ~/.tmux.conf
+
+# Direction
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# Change size
+
+unbind Left
+unbind Right
+unbind Down
+unbind Up
+
+bind -n M-j resize-pane -D 1
+bind -n M-k resize-pane -U 5
+bind -n M-h resize-pane -L 5
+bind -n M-l resize-pane -R 5 
+
+bind Left resize-pane -L 1
+bind Down resize-pane -D 1
+bind Up resize-pane -U 1
+bind Right resize-pane -R 1
+
+bind <Shift>Left resize-pane -L 20
+bind <Shift>Down resize-pane -D 20
+bind <Shift>Up resize-pane -U 20
+bind <Shift>Right resize-pane -R 20
+
+
+# Vim selection:
+unbind [
+bind Escape copy-mode
+unbind p
+bind p paste-buffer
+bind-key -T copy-mode-vi 'v' send -X begin-selection
+bind-key -T copy-mode-vi 'y' send -X copy-selection
+
+setw -g mode-keys vi

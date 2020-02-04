@@ -1,6 +1,6 @@
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
-
+export VISUAL=nvim
 fpath=($ZSH/functions $fpath)
 
 autoload -U $ZSH/functions/*(:t)

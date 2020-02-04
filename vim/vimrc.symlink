@@ -1,4 +1,150 @@
-syntax on
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" Wrap gitcommit file types at the appropriate length
-filetype indent plugin on
+"" VUMDLE PLUGIN MANAGER SET-UP
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+	" let Vundle manage Vundle, required
+		Plugin 'VundleVim/Vundle.vim'
+
+	" Backup and autosave
+		Plugin 'chrisbra/vim-autosave'
+
+	" Colors and bar locations
+		Plugin 'vim-airline/vim-airline'
+		Plugin 'vim-airline/vim-airline-themes'
+		Plugin 'edkolev/tmuxline.vim'
+		Plugin 'yggdroot/indentline'
+
+	" Syntax and completion
+		Plugin 'vim-syntastic/syntastic'
+		Plugin 'ycm-core/YouCompleteMe'
+
+	" Files finding
+		Plugin 'wincent/command-t'
+		Plugin 'preservim/nerdtree' 
+		Plugin 'preservim/nerdcommenter'
+		Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+	" Buffer navigation and tag display
+	   "Plugin 'easymotion/vim-easymotion'
+		Plugin 'justinmk/vim-sneak'
+		Plugin 'majutsushi/tagbar'
+		Plugin 'xolox/vim-misc'
+		Plugin 'xolox/vim-easytags'
+
+	" Snippets
+		Plugin 'SirVer/ultisnips'
+		Plugin 'rstacruz/sparkup'
+
+call vundle#end()
+filetype plugin indent on
+
+"" DEFINE LEADER'S KEY
+
+	let mapleader=","
+
+"" PLUGIN CONFIGURATION ""
+
+	" Autosave
+		let g:autosave_extensions = '.backup'
+		let g:autosave_backup     = '~/.vim.backup'
+		let g:autosave_timer      = 2*1000*60 " n milli second
+	
+	" Vim-airline
+	
+		let g:airline_theme='night_owl'
+		let g:airline#extensions#tabline#enabled = 1
+		let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+	" Syntastic - basic, edit after reading manual.
+	
+		set statusline+=%#warningmsg#
+		set statusline+=%%{SyntasticStatuslineFlag()}
+		set statusline+=%*
+		
+		let g:syntastic_always_populate_loc_list = 1
+		let g:syntastic_auto_loc_list = 1
+		let g:syntastic_check_on_open = 1
+		let g:syntastic_check_on_wq = 1
+	
+	" NerdTree 
+		map <leader>t :NERDTreeToggle<CR>
+
+"" GENERAL VIM SETTINGS
+	syntax on
+	set dir=~/.vim.backup
+	set backspace=indent,eol,start
+	set listchars=tab:\|\
+	set pastetoggle=<F2>
+	set relativenumber
+	set shiftwidth=4
+	set autoindent
+	set cursorline
+	set tabstop=4
+	set incsearch
+	set wildmenu
+	set hlsearch
+	set path+=**
+	set mouse=a
+	set number
+	highlight cursor ctermfg=white ctermbg=yellow cterm=bold guifg=white guibg=yellow gui=bold
+
+"" KEY BINDINGS
+	" Buffer navigation
+		nnoremap n nzzzv
+		nnoremap N Nzzzv
+		nnoremap H 0
+		nnoremap L $
+		nnoremap J G
+		nnoremap K gg
+	
+		nnoremap <Space> za
+		nnoremap <leader>z zMzvzz
+	
+	" Winwdow
+		inoremap <leader>w <Esc>:w<CR>
+		nnoremap <leader>w :w<CR>
+		
+		inoremap <leader>q <ESC>:q<CR>
+		nnoremap <leader>q :q<CR>
+		
+		inoremap <leader>x <ESC>:x<CR>
+		nnoremap <leader>x :x<CR>
+	
+		nnoremap <leader>v :vsplit<CR>
+		nnoremap <leader>s :split<CR>
+
+	" Tabs		
+		nnoremap <leader>N :tabnew<CR>
+		nnoremap <leader>n :tabp<CR>
+		nnoremap <leader>m :tabn<CR>
+		
+		nnoremap <F7> :tabp<CR>
+		nnoremap <F8> :tabn<CR>
+	
+		map <tab> %
+		
+		nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
+		nnoremap <C-c> :set norelativenumber<CR>:set nonumber<CR>:echo "Line numbers turned off."<CR>
+		nnoremap <C-n> :set relativenumber<CR>:set number<CR>:echo "Line numbers turned on."<CR>
+		nnoremap vv 0v$
+		nnoremap <leader><tab> :set list!<cr>
+		
+		nnoremap <F5> :cn<CR>
+		nnoremap <F6> :cnf<CR>
+		nnoremap <S-F5> :cw<CR>
+	
+	" Return to the same line you left off at
+		augroup line_return
+		au!
+		au BufReadPost *
+			\ if line("'\"") > 0 && line("'\"") <= line("$") |
+			\       execute 'normal! g`"zvzz' |
+			\ endif
+		augroup END
+
+"" FUTURE STUFF
+	"Swap line
+	"Insert blank below and above
