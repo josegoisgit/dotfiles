@@ -12,12 +12,14 @@ call vundle#begin()
 		Plugin 'chrisbra/vim-autosave'
 
 	" Colors and bar locations
+		Plugin 'altercation/vim-colors-solarized'
 		Plugin 'vim-airline/vim-airline'
 		Plugin 'vim-airline/vim-airline-themes'
 		Plugin 'edkolev/tmuxline.vim'
 		Plugin 'yggdroot/indentline'
 
 	" Syntax and completion
+		Plugin 'mbbill/undotree'
 		Plugin 'vim-syntastic/syntastic'
 		Plugin 'ycm-core/YouCompleteMe'
 
@@ -32,7 +34,6 @@ call vundle#begin()
 		Plugin 'justinmk/vim-sneak'
 		Plugin 'majutsushi/tagbar'
 		Plugin 'xolox/vim-misc'
-		Plugin 'xolox/vim-easytags'
 
 	" Snippets
 		Plugin 'SirVer/ultisnips'
@@ -47,7 +48,18 @@ filetype plugin indent on
 
 "" PLUGIN CONFIGURATION ""
 
+	" Colors 
+	
+		syntax enable
+		set background=dark
+		colorscheme solarized
+		let g:solarized_termcolors=256
+		let g:solarized_contrast='high'
+		let g:solarized_termtrans=1
+		let g:solarized_visibility='high'
+
 	" Autosave
+	
 		let g:autosave_extensions = '.backup'
 		let g:autosave_backup     = '~/.vim.backup'
 		let g:autosave_timer      = 2*1000*60 " n milli second
@@ -70,7 +82,12 @@ filetype plugin indent on
 		let g:syntastic_check_on_wq = 1
 	
 	" NerdTree 
+	
 		map <leader>t :NERDTreeToggle<CR>
+
+	" Tags
+	
+		nmap <leader>T :TagbarToggle<CR>
 
 "" GENERAL VIM SETTINGS
 	syntax on
@@ -92,6 +109,10 @@ filetype plugin indent on
 	highlight cursor ctermfg=white ctermbg=yellow cterm=bold guifg=white guibg=yellow gui=bold
 
 "" KEY BINDINGS
+	
+	" History
+		nnoremap <leader>u  :UndotreeToggle<CR>
+
 	" Buffer navigation
 		nnoremap n nzzzv
 		nnoremap N Nzzzv
@@ -127,7 +148,7 @@ filetype plugin indent on
 		map <tab> %
 		
 		nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
-		nnoremap <C-c> :set norelativenumber<CR>:set nonumber<CR>:echo "Line numbers turned off."<CR>
+		nnoremap <C-N> :set norelativenumber<CR>:set nonumber<CR>:echo "Line numbers turned off."<CR>
 		nnoremap <C-n> :set relativenumber<CR>:set number<CR>:echo "Line numbers turned on."<CR>
 		nnoremap vv 0v$
 		nnoremap <leader><tab> :set list!<cr>

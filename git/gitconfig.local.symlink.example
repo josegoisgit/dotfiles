@@ -2,4 +2,4 @@
         name = josegois
         email = josegoismail@gmail.com
 [credential]
-        helper = GIT_CREDENTIAL_HELPER
+        helper = cache

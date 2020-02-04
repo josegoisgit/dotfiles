@@ -106,67 +106,55 @@ set -g message-bg colour166
 
 # }
 
-# Yank plugin requirement
-set -g set-clipboard on
-set -g @yank_selection 'primary'
-set -g @yank_selection_mouse 'clipboard'
-set -g @yank_action 'copy-pipe' # 'copy-pipe-and-cancel'
+## INSTALL PLUGINS
 
-# Open plugin configurations
-set -g @open-S 'https://www.duckduckgo.com/'
+	set -g @plugin 'tmux-plugins/tpm'
+	set -g @plugin 'tmux-plugins/tmux-sensible'
+	#set -g @plugin 'jimeh/tmux-themepack'
+	set -g @plugin 'tmux-plugins/tmux-resurrect'
+	set -g @plugin 'tmux-plugins/tmux-continuum' 
+	set -g @plugin 'tmux-plugins/tmux-yank'
+	set -g @plugin 'tmux-plugins/tmux-copycat'
+	#set -g @plugin 'tmux-plugins/tmux-logging'
+	#set -g @plugin 'tmux-plugins/tmux-battery'
+	#set -g @plugin 'tmux-plugins/vim-tmux'
+	#set -g @plugin 'tmux-plugins/tmux-sidebar'
+	#set -g @plugin 'tmux-plugins/vim-tmux-focus-events'
+	#set -g @plugin 'tmux-plugins/tmux-pain-control'
+	#set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+	#set -g @plugin 'tmux-plugins/tmux-open '
+	#set -g @plugin 'tmux-plugins/tmux-urlview'
+	#set -g @plugin 'tmux-plugins/tmux-net-speed'
+	#set -g @plugin 'tmux-plugins/tmux-cpu'
+	#set -g @plugin 'tmux-plugins/tmux-fpp'
+	#set -g @plugin 'tmux-plugins/tmux-sessionist'
+	#set -g @plugin 'tmux-plugins/tmux-test'
+	#set -g @plugin 'tmux-plugins/tmux-online-status'
+	#set -g @plugin 'tmux-plugins/tmux-maildir-counter'
+	#set -g @plugin 'tmux-plugins/language-tmux'
+	#set -g @plugin 'tmux-plugins/tmux-example-plugin'
 
-# List of plugins
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'jimeh/tmux-themepack'
-set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -g @plugin 'tmux-plugins/tmux-continuum' 
-set -g @plugin 'tmux-plugins/tmux-yank'
-set -g @plugin 'tmux-plugins/tmux-copycat'
-#set -g @plugin 'tmux-plugins/tmux-logging'
-#set -g @plugin 'tmux-plugins/tmux-battery'
-#set -g @plugin 'tmux-plugins/vim-tmux'
-#set -g @plugin 'tmux-plugins/tmux-sidebar'
-#set -g @plugin 'tmux-plugins/vim-tmux-focus-events'
-#set -g @plugin 'tmux-plugins/tmux-pain-control'
-#set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
-#set -g @plugin 'tmux-plugins/tmux-open '
-#set -g @plugin 'tmux-plugins/tmux-urlview'
-#set -g @plugin 'tmux-plugins/tmux-net-speed'
-#set -g @plugin 'tmux-plugins/tmux-cpu'
-#set -g @plugin 'tmux-plugins/tmux-fpp'
-#set -g @plugin 'tmux-plugins/tmux-sessionist'
-#set -g @plugin 'tmux-plugins/tmux-test'
-#set -g @plugin 'tmux-plugins/tmux-online-status'
-#set -g @plugin 'tmux-plugins/tmux-maildir-counter'
-#set -g @plugin 'tmux-plugins/language-tmux'
-#set -g @plugin 'tmux-plugins/tmux-example-plugin'
+## INITIALIZE PLUGINS
 
-# fill the list'
-#set -g @plugin 'tmux-plugins/tmux-'
-#set -g @plugin 'tmux-plugins/tmux-'
+	run -b '~/.tmux/plugins/tpm/tpm'
 
-# 
-#set -g @plugin 'tmux-plugins/tmux-sensible'
-#set -g @plugin 'tmux-plugins/tmux-pain-control'
-#set -g @plugin 'tmux-plugins/tmux-resurrect'
-#set -g @plugin 'tmux-plugins/tmux-continuum'
-#set -g @plugin 'tmux-plugins/tmux-logging'
-#set -g @plugin 'tmux-plugins/tmux-copycat'
-#set -g @plugin 'tmux-plugins/tmux-yank'
+## PLUGIN CONFIGURATION
+	
+	# Theme pack
+		#set -g @themepack 'powerline/double/blue'
 
-# Other examples:
-# # set -g @plugin 'github_username/plugin_name'
-# # set -g @plugin 'git@github.com/user/plugin'
-# # set -g @plugin 'git@bitbucket.com/user/plugin'
-#
+	# Yank plugin requirement
+		set -g set-clipboard on
+		set -g @yank_selection 'primary'
+		set -g @yank_selection_mouse 'clipboard'
+		set -g @yank_action 'copy-pipe' # 'copy-pipe-and-cancel'
+		
+	# Open plugin configurations
+		set -g @open-S 'https://www.duckduckgo.com/'
 
-# Configure plugins
-set -g @themepack 'powerline/double/blue'
 
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run -b '~/.tmux/plugins/tpm/tpm'
+## UNBIND LEADER KEY
+	unbind "'"
 
-unbind "'"
 # NOTHING BELLOW
 # EOF
