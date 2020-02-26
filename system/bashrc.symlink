@@ -2,16 +2,34 @@
 # ~/.bashrc
 #
 
-echo running $0
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+## CONDITIONAL CLAUSES THAT PREVENT TO SOURCE BASHRC
 
-GREP_OPTIONS='--color=auto'
-alias ls='ls --color=auto'
-alias tmuxa='tmux new-session -t aperture'
-PS1='[\u@\h \W]\$ '
-printf '\033[40m'
+	# If not running interactively, don't do anything
 
-#zsh
-#tmux
-#tmux -2 -c /usr/bin/zsh
+		[[ $- != *i* ]] && return
+
+
+## DECLARING ENVIRONMENTAL VARIABLES
+
+	export ZSH=$HOME"/.oh-my-zsh"
+
+
+## PROGRAMS OPTIONS
+
+	# GREP
+
+		GREP_OPTIONS='--color=auto'
+
+## ABREVIATING COMMANDS
+
+	alias ls='ls --color=auto'
+	alias tmuxa='tmux new-session -t aperture'
+
+
+## DEFINE PRIMARY PROMPT OUTPUT
+
+	PS1='[\u@\h \W]\ '
+	printf '\033[40m\n$ '
+
+
+zsh

@@ -1,201 +1,350 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+    set nocompatible              " be iMproved, required
+    filetype off                  " required
 
-" VUMDL PLUGIN MANAGER SET-UP
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+    " VUMDL PLUGIN MANAGER SET-UP
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
 
-	" let Vundle manage Vundle, required
-			Plugin 'VundleVim/Vundle.vim'
+    " let Vundle manage Vundle, required
+            Plugin 'VundleVim/Vundle.vim'
 
-		" Alignment
-			Plugin 'junegunn/vim-easy-align'
+        " Alignment
+            Plugin 'junegunn/vim-easy-align'
+    "		Plugin 'terryma/vim-multiple-cursors'
 
-		" Backup and autosave
-			Plugin 'chrisbra/vim-autosave'
-			Plugin 'thaerkh/vim-workspace'
-			
-		" Buffer navigation and tag display
-		   "Plugin 'easymotion/vim-easymotion'
-			Plugin 'justinmk/vim-sneak'
-			Plugin 'majutsushi/tagbar'
-			Plugin 'xolox/vim-misc'
-			Plugin 'christoomey/vim-sort-motion'
-			
-		" Colors and bar locations
-			Plugin 'altercation/vim-colors-solarized'
-			Plugin 'vim-airline/vim-airline'
-			Plugin 'vim-airline/vim-airline-themes'
-			Plugin 'edkolev/tmuxline.vim'
-			Plugin 'yggdroot/indentline'
+        " Backup and autosave
+            Plugin 'chrisbra/vim-autosave'
+            Plugin 'thaerkh/vim-workspace'
 
-		" Files finding
-			Plugin 'wincent/command-t'
-			Plugin 'preservim/nerdtree' 
-			Plugin 'preservim/nerdcommenter'
-			Plugin 'Xuyuanp/nerdtree-git-plugin'
+        " Buffer navigation and tag display
+            "Plugin 'easymotion/vim-easymotion'
+            Plugin 'justinmk/vim-sneak'
+            Plugin 'majutsushi/tagbar'
+            Plugin 'xolox/vim-misc'
+            Plugin 'christoomey/vim-sort-motion'
 
-		" Snippets
-			Plugin 'SirVer/ultisnips'
-			Plugin 'rstacruz/sparkup'
+        " Colors and bar locations
+            Plugin 'altercation/vim-colors-solarized'
+            "Plugin 'vim-airline/vim-airline'
+            "Plugin 'vim-airline/vim-airline-themes'
+            Plugin 'edkolev/tmuxline.vim'
+            Plugin 'yggdroot/indentline'
 
-		" Syntax and completion
-			Plugin 'mbbill/undotree'
-			Plugin 'vim-syntastic/syntastic'
-			Plugin 'ycm-core/YouCompleteMe'
+        " Files finding
+            "Plugin 'wincent/command-t'
+            Plugin 'preservim/nerdtree' 
+            Plugin 'preservim/nerdcommenter'
+            Plugin 'Xuyuanp/nerdtree-git-plugin'
+            Plugin 'mileszs/ack.vim'
+                
+        " Completion, Snippets and Syntax
+        
+            Plugin 'mbbill/undotree'
+            Plugin 'vim-syntastic/syntastic'
+            Plugin 'ycm-core/YouCompleteMe'
+            Plugin 'tpope/vim-surround'
+            Plugin 'SirVer/ultisnips'
+            
+            " HTML 
+            
+                Plugin 'rstacruz/sparkup'
+                Plugin 'othree/html5.vim'
 
-	call vundle#end()
-	filetype plugin indent on
+            " Ipsi-lorem
+            
+                Plugin 'tkhren/vim-fake'
 
-	"" DEFINE LEADER'S KEY
+        " Browser navigation
 
-		let mapleader=","
+            Plugin 'tyru/open-browser.vim'
 
-		nmap <leader>r :so ~/.vimrc<CR>
+    call vundle#end()
 
-	" PLUGIN CONFIGURATION ""
 
-		" Alignment 
+    "" DEFINE LEADER'S KEY
 
-			" Start interactive EasyAlign in visual mode (e.g. vipga)
-				xmap ga <Plug>(EasyAlign)
+        let mapleader=","
 
-			" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-				nmap ga <Plug>(EasyAlign)
+        nmap <leader>r :so ~/.vimrc<CR>
 
-	" Colors 
+    "" PLUGIN CONFIGURATION ""
+
+        " Alignment
+
+            " Start interactive EasyAlign in visual mode (e.g. vipga)
+                xmap ga <Plug>(EasyAlign)
+
+            " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+                nmap ga <Plug>(EasyAlign)
+
+        " Multi cursors
+
+            "let g:multi_cursor_use_default_mapping=0
+            
+            "" Default mapping
+
+            "let g:multi_cursor_start_word_key      = '<C-n>'
+            "let g:multi_cursor_select_all_word_key = '<A-n>'
+            "let g:multi_cursor_start_key           = 'g<C-n>'
+            "let g:multi_cursor_select_all_key      = 'g<A-n>'
+            "let g:multi_cursor_next_key            = '<C-n>'
+            "let g:multi_cursor_prev_key            = '<C-p>'
+            "let g:multi_cursor_skip_key            = '<C-x>'
+            "let g:multi_cursor_quit_key            = '<Esc>'
+
+        " Colors 
+        
+            syntax enable
+
+            "set background=light
+            set background=dark
+
+            colorscheme solarized
+
+            let g:solarized_bold       = 1        "      1 | 0
+            let g:solarized_contrast   = "high" " normal | high or low
+            let g:solarized_degrade    = 0        "      0 | 1
+            let g:solarized_italic     = 1        "      1 | 0
+            let g:solarized_termcolors = 256      "     16 | 256
+            let g:solarized_termtrans  = 0        "      0 | 1
+            let g:solarized_underline  = 1        "      1 | 0
+            let g:solarized_visibility = "normal" " normal | high or low
+
+            call togglebg#map("<a-A>")
+
+        " Vim-airline
+"
+
+            "" Vim colors for djferent users
+            "if $USER == "root"
+            "    let g:airline_theme = 'raven'
+            "else
+            "    let g:airline_theme = 'night_owl'
+            "endif
+
+            "let g:airline#extensions#tabline#enabled   = 1
+            "let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+        " Autosave
+
+            let g:autosave_extensions      = '.autosave'
+            let g:auto_save                = 1
+            let g:autosave_backup          = '~/.vim.backup'
+            let g:autosave_timer           = 1*1000*60 " n milli second
+            let g:auto_save_no_updatetime  = 1
+            let g:auto_save_in_insert_mode = 1
+
+        " Workspace
+
+            nnoremap <leader>h :ToggleWorkspace<CR>
+
+            "let g:workspace_autosave_ignore         = ['gitcommit']
+            "let g:workspace_autosave_untrailspaces  = 0
+            "let g:workspace_create_new_tabs         = 0  " enabled = 1 (default), disabled = 0
+            let g:workspace_autosave                = 1
+            let g:workspace_autosave_always         = 1
+            let g:workspace_session_directory       = $HOME . '/.vim.session/'
+            let g:workspace_session_name            = '.workspace_session.vim'
+            let g:workspace_session_disable_on_args = 1
+            let g:workspace_undodir                 = $HOME . '/.vim.undo'
+            let g:workspace_persist_undo_history    = 1
+
+        " YouCompleteMe
+
+            let g:ycm_complete_in_strings = 1
+            let g:ycm_filepath_completion_use_working_dir = 1
+            let g:ycm_filepath_blacklist = {
+                  \ 'html': 0,
+                  \ 'jsx': 1,
+                  \ 'xml': 1,
+                  \}
+
+        " Syntastic - basic, edit after reading manual.
+
+            set statusline+=%#warningmsg#
+            set statusline+=%%{SyntasticStatuslineFlag()}
+            set statusline+=%*
+            
+            let g:syntastic_always_populate_loc_list = 1
+            let g:syntastic_auto_loc_list            = 1
+            let g:syntastic_check_on_open            = 1
+            let g:syntastic_check_on_wq              = 1
+
+        " Snippets
+            
+            autocmd FileType js UltiSnipsAddFiletypes javascript-jasmine
+    "		let g:UltiSnipsExpandTrigger <TAB><TAB>
+    "		let g:UltiSnipsListSnippetsi <c-TAB>
+    "		let g:UltiSnipsJumpForwardTrigger <c-j>
+    "		let g:UltiSnipsJumpBackwardTrigger <c-k>
+
+        " HTML 5
+
+            "Disable event-handler attributes support:
+            let g:html5_event_handler_attributes_complete = 0
+            "Disable RDFa attributes support:
+            let g:html5_rdfa_attributes_complete = 0
+            "Disable microdata attributes support:
+            let g:html5_microdata_attributes_complete = 0
+            "Disable WAI-ARIA attribute support:
+            let g:html5_aria_attributes_complete = 0
+
+        " NerdTree
+        
+            map <leader>t :NERDTreeToggle<CR>
+
+        " Tags
+        
+            nmap <leader>T :TagbarToggle<CR>
+
+        " ack.vim - File searcher
+
+            if executable('ag')
+              let g:ackprg = 'ag --vimgrep'
+            endif
+
+            map <C-a> :Ack<Space>.<Space>
+            map <C-A> :AckFromSearch<Space>
+
+    "" COPY AND PASTE OUTSIDE VIM BINDINGS WITH XSEL
+        "ref: https://vim.fandom.com/wiki/Accessing_the_system_clipboard
+            " Copy to X CLIPBOARD
+
+                map <leader>cc :w !xsel -i -b<CR>
+                map <leader>cp :w !xsel -i -p<CR>
+                map <leader>cs :w !xsel -i -s<CR>
+
+            " Paste from X CLIPBOARD
+
+                map <leader>pp :r!xsel -p<CR>
+                map <leader>ps :r!xsel -s<CR>
+                map <leader>pb :r!xsel -b<CR>
+
+    "" GENERAL VIM SETTINGS
+
+        syntax on
+
+        " Autocompletion
+
+            filetype plugin indent on
+            set omnifunc=syntaxcomplete#Complete
+
+        " Identation
+        "
+            set tabstop=4
+            set expandtab
+            set autoindent
+            set shiftwidth=4
+            set smartindent
+            set backspace=indent,eol,start
+
+        " Miscelaneous
+        
+            set dir=~/.vim.backup
+            set listchars=tab:\|\
+            set pastetoggle=<F2>
+            set relativenumber
+            set cursorline
+
+            set incsearch
+            set wildmenu
+            set hlsearch
+            set path+=**
+            set mouse=a
+            set number
+            highlight cursor ctermfg=white ctermbg=yellow cterm=bold guifg=white guibg=yellow gui=bold
+
+            set relativenumber
+            set number
+
+    "" KEY BINDINGS
+    
+            nnoremap <leader>it "=strftime("%c")<CR>P
+            inoremap <leader>it <C-R>=strftime("%c")<CR>
+
+        " History
+
+            nnoremap <leader>u  :UndotreeToggle<CR>
+
+        " Buffer navigation
+
+            nnoremap n nzzzv
+            nnoremap N Nzzzv
+            nnoremap H 0
+            nnoremap L $
+            nnoremap J G
+            nnoremap K gg
+        
+            nnoremap <Space> za
+            nnoremap <leader>z zMzvzz
+        
+        " Winwdow
+
+            inoremap <leader>w <Esc>:w<CR>
+            nnoremap <leader>w :w<CR>
+            
+            inoremap <leader>q <ESC>:q<CR>
+            nnoremap <leader>q :q<CR>
+            
+            inoremap <leader>x <ESC>:x<CR>
+            nnoremap <leader>x :x<CR>
+        
+            nnoremap <leader>v :vsplit<CR>
+            nnoremap <leader>s :split<CR>
+
+        " Tabs
+
+            nnoremap <leader>N :tabnew<CR>
+            nnoremap <leader>n :tabp<CR>
+            nnoremap <leader>m :tabn<CR>
+            
+            nnoremap <F7> :tabp<CR>
+            nnoremap <F8> :tabn<CR>
+
+            map <tab> %
+            
+            nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
+
+            nnoremap vv 0v$
+            nnoremap <leader><tab> :set list!<cr>
+
+            nnoremap <F5> :cn<CR>
+            nnoremap <F6> :cnf<CR>
+            nnoremap <S-F5> :cw<CR>
+
+        "" Numbers
+
+            "fu! Leader_Fcn() dict
+            "    map <leader>self.key_map :call self.function<CR>
+          
+            "endf
+
+        vnoremap <leader>9 :<c-u>exe join(getline("'<","'>"),'<bar>')<cr>
+
+        function Fcn_n1()
+            :echo "Called user function"
+        endfunction
+
+        let keyFcn_dict = #{}
+        for k in range(10)
+            let keyFcn_dict[k]="Fcn_n".k
+        endfor
+        let keyFcn_dict["-"]="Fcn_minus"
+        let keyFcn_dict["="]="Fcn_equal"
+        let keyFcn_dict["<Backspace>"]="Fcn_backspace"
+
+        for [key,fcn] in items(keyFcn_dict)
+            ":echo "map <Leader>".key." :call ".fcn."();"
+            "map <leader>key :call fcn_fcn<CR>
+        endfor
+
+
+    inoremap jk <Esc>
+    inoremap kj <Esc>
+
+	" Command-T
 	
-		syntax enable
-		set background=dark
-		colorscheme solarized
-		let g:solarized_termcolors = 256
-		let g:solarized_contrast   = 'high'
-		let g:solarized_termtrans  = 1
-		let g:solarized_visibility = 'high'
-
-	" Autosave
-
-		let g:autosave_extensions      = '.autosave'
-		let g:auto_save                = 1
-		let g:autosave_backup          = '~/.vim.backup'
-		let g:autosave_timer           = 1*1000*60 " n milli second
-		let g:auto_save_no_updatetime  = 1
-		let g:auto_save_in_insert_mode = 1
-
-	" Workspace
-
-		nnoremap <leader>h :ToggleWorkspace<CR>
-
-		let g:workspace_session_directory       = $HOME . '/.vim.session/'
-		let g:workspace_undodir                 = $HOME . '/.vim.undo'
-
-		"auaskdasj
-		"let g:workspace_create_new_tabs         = 0  " enabled = 1 (default), disabled = 0
-		"let g:workspace_session_name            = 'Session.vim'
-		"let g:workspace_session_disable_on_args = 1
-		"let g:workspace_persist_undo_history    = 1  " enabled = 1 (default), disabled = 0
-		"let g:workspace_autosave                = 0
-		"let g:workspace_autosave_always         = 1
-		"let g:workspace_autosave_ignore         = ['gitcommit']
-		"let g:workspace_autosave_untrailspaces  = 0
-
-	" Vim-airline
-	
-		let g:airline_theme                        = 'night_owl'
-		let g:airline#extensions#tabline#enabled   = 1
-		let g:airline#extensions#tabline#formatter = 'unique_tail'
-
-	" Syntastic - basic, edit after reading manual.
-	
-		set statusline+=%#warningmsg#
-		set statusline+=%%{SyntasticStatuslineFlag()}
-		set statusline+=%*
-		
-		let g:syntastic_always_populate_loc_list = 1
-		let g:syntastic_auto_loc_list            = 1
-		let g:syntastic_check_on_open            = 1
-		let g:syntastic_check_on_wq              = 1
-	
-	" NerdTree 
-	
-		map <leader>t :NERDTreeToggle<CR>
-
-	" Tags
-	
-		nmap <leader>T :TagbarToggle<CR>
-
-"" GENERAL VIM SETTINGS
-
-	syntax on
-	set dir=~/.vim.backup
-	set backspace=indent,eol,start
-	set listchars=tab:\|\
-	set pastetoggle=<F2>
-	set relativenumber
-	set shiftwidth=4
-	set autoindent
-	set cursorline
-	set tabstop=4
-	set incsearch
-	set wildmenu
-	set hlsearch
-	set path+=**
-	set mouse=a
-	set number
-	highlight cursor ctermfg=white ctermbg=yellow cterm=bold guifg=white guibg=yellow gui=bold
-
-"" KEY BINDINGS
- 
-	" History
-
-		nnoremap <leader>u  :UndotreeToggle<CR>
-
-	" Buffer navigation
-
-		nnoremap n nzzzv
-		nnoremap N Nzzzv
-		nnoremap H 0
-		nnoremap L $
-		nnoremap J G
-		nnoremap K gg
-	
-		nnoremap <Space> za
-		nnoremap <leader>z zMzvzz
-	
-	" Winwdow
-
-		inoremap <leader>w <Esc>:w<CR>
-		nnoremap <leader>w :w<CR>
-		
-		inoremap <leader>q <ESC>:q<CR>
-		nnoremap <leader>q :q<CR>
-		
-		inoremap <leader>x <ESC>:x<CR>
-		nnoremap <leader>x :x<CR>
-	
-		nnoremap <leader>v :vsplit<CR>
-		nnoremap <leader>s :split<CR>
-
-	" Tabs		
-
-		nnoremap <leader>N :tabnew<CR>
-		nnoremap <leader>n :tabp<CR>
-		nnoremap <leader>m :tabn<CR>
-		
-		nnoremap <F7> :tabp<CR>
-		nnoremap <F8> :tabn<CR>
-	
-		map <tab> %
-		
-		nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
-		nnoremap <C-N> :set norelativenumber<CR>:set nonumber<CR>:echo "Line numbers turned off."<CR>
-		nnoremap <C-n> :set relativenumber<CR>:set number<CR>:echo "Line numbers turned on."<CR>
-		nnoremap vv 0v$
-		nnoremap <leader><tab> :set list!<cr>
-		
-		nnoremap <F5> :cn<CR>
-		nnoremap <F6> :cnf<CR>
-		nnoremap <S-F5> :cw<CR>
+		map <C-T> :CommandT<CR>
 	
 	" Return to the same line you left off at
 
@@ -204,9 +353,14 @@ call vundle#begin()
 		au BufReadPost *
 			\ if line("'\"") > 0 && line("'\"") <= line("$") |
 			\       execute 'normal! g`"zvzz' |
-			\ endif
-		augroup END
+            \ endif
+        augroup END
 
 "" FUTURE STUFF
-	"Swap line
-	"Insert blank below and above
+
+	" Swap line
+
+
+	" Insert blank below and above
+
+

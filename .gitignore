@@ -1,1 +1,9 @@
 git/gitconfig.local.symlink
+tags
+tmux/tmux.symlink/plugins/*
+tmux/tmux.symlink/resurrect/*
+vim/vim.symlink/bundle/*
+#vim/vim.backup.symlink/*
+#vim/vim.session.symlink/*
+#vim/vim.undo.symlink/*
+

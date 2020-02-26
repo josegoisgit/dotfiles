@@ -6,6 +6,17 @@ set -e
 
 cd "$(dirname $0)"/..
 
-
 # find the installers and run them iteratively
-find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
+find . -maxdepth 2 -name install.sh | while read installer ; do sh -c "${installer}" ; done
+
+echo $(pwd)
+
+omz_folder=$(pwd)/zsh/oh-my-zsh.symlink
+omz_fname=$(pwd)/zsh/omz_install.sh
+
+rm -f $omz_fname
+
+curl -Lo $omz_fname https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+
+ZSH=$omz_folder sh $omz_fname
+
