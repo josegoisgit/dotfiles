@@ -1,3 +1,6 @@
+export ZSH=$HOME"/.oh-my-zsh"
+export PATH=$PATH:/home/josegois/Github/flutter/bin
+
 alias reload!='. ~/.zshrc'
 
 alias vs="v `git status --porcelain | sed -ne 's/^ M //p'`"

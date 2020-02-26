@@ -143,7 +143,6 @@ install_dotfiles () {
 curl -L git.io/antigen > $DOTFILES_ROOT/zsh/antigen.zsh.symlink
 success "download antigen.zsh.symlink"
 
-
 setup_gitconfig
 
 install_dotfiles

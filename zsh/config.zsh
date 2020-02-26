@@ -3,11 +3,11 @@ export CLICOLOR=true
 export VISUAL=nvim
 fpath=($ZSH/functions $fpath)
 
-autoload -U $ZSH/functions/*(:t)
+#autoload -U $ZSH/functions/*(:t)
 
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000
+SAVEHIST=1000000
 
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP

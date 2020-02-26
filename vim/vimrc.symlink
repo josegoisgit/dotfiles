@@ -272,9 +272,9 @@
             nnoremap N Nzzzv
             nnoremap H 0
             nnoremap L $
-            nnoremap J G
-            nnoremap K gg
-        
+            nnoremap J 10jzz
+            nnoremap K 10kzz
+
             nnoremap <Space> za
             nnoremap <leader>z zMzvzz
         

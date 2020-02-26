@@ -96,8 +96,8 @@
         
             syntax enable
 
-            set background=light
-           " set background=dark
+            "set background=light
+            set background=dark
 
             colorscheme solarized
 
@@ -228,7 +228,9 @@
 
             filetype plugin indent on
             set omnifunc=syntaxcomplete#Complete
+
         " Identation
+        "
             set tabstop=4
             set expandtab
             set autoindent
@@ -236,28 +238,29 @@
             set smartindent
             set backspace=indent,eol,start
 
-        "
-        set dir=~/.vim.backup
-        set listchars=tab:\|\
-        set pastetoggle=<F2>
-        set relativenumber
-        set cursorline
+        " Miscelaneous
+        
+            set dir=~/.vim.backup
+            set listchars=tab:\|\
+            set pastetoggle=<F2>
+            set relativenumber
+            set cursorline
 
-        set incsearch
-        set wildmenu
-        set hlsearch
-        set path+=**
-        set mouse=a
-        set number
-        highlight cursor ctermfg=white ctermbg=yellow cterm=bold guifg=white guibg=yellow gui=bold
+            set incsearch
+            set wildmenu
+            set hlsearch
+            set path+=**
+            set mouse=a
+            set number
+            highlight cursor ctermfg=white ctermbg=yellow cterm=bold guifg=white guibg=yellow gui=bold
 
-        set relativenumber
-        set number
+            set relativenumber
+            set number
 
     "" KEY BINDINGS
     
             nnoremap <leader>it "=strftime("%c")<CR>P
-            inoremap  <C-R>=strftime("%c")<CR>
+            inoremap <leader>it <C-R>=strftime("%c")<CR>
 
         " History
 
@@ -269,9 +272,9 @@
             nnoremap N Nzzzv
             nnoremap H 0
             nnoremap L $
-            nnoremap J G
-            nnoremap K gg
-        
+            nnoremap J 21jzz
+            nnoremap K 21kzz
+
             nnoremap <Space> za
             nnoremap <leader>z zMzvzz
         
