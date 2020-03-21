@@ -1,0 +1,17 @@
+export DOTZSH=/home/josegois/Github/dotfiles/zsh
+
+source $DOTZSH/fpath.zsh
+
+source $DOTZSH/functions.zsh
+
+source $DOTZSH/aliases.zsh
+
+source $DOTZSH/window.zsh
+
+source $DOTZSH/prompt.zsh
+
+source $DOTZSH/completion.zsh
+
+source $DOTZSH/config.zsh
+
+

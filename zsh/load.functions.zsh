@@ -85,7 +85,6 @@ c() {
 alias cd="c"
 
 #compdef _tmuxinator tmuxinator
-
 _tmuxinator() {
   local commands projects
   commands=(${(f)"$(tmuxinator commands zsh)"})
@@ -102,7 +101,6 @@ _tmuxinator() {
       ;;
     esac
   fi
-
   return
 }
 

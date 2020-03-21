@@ -1,12 +1,16 @@
     set nocompatible              " be iMproved, required
     filetype off                  " required
 
-    " VUMDL PLUGIN MANAGER SET-UP
+    " VUMDLE PLUGIN MANAGER SET-UP
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
 
     " let Vundle manage Vundle, required
             Plugin 'VundleVim/Vundle.vim'
+            Plugin 'zinit-zsh/zinit-vim-syntax'
+
+        " Competition
+            Plugin 'igorjan94/codeforces.vim'
 
         " Alignment
             Plugin 'junegunn/vim-easy-align'
@@ -44,7 +48,11 @@
             Plugin 'ycm-core/YouCompleteMe'
             Plugin 'tpope/vim-surround'
             Plugin 'SirVer/ultisnips'
-            
+            Plugin 'tpope/vim-commentary'
+
+            " Python
+                Plugin 'davidhalter/jedi-vim'
+
             " HTML 
             
                 Plugin 'rstacruz/sparkup'
@@ -63,11 +71,52 @@
 
     "" DEFINE LEADER'S KEY
 
-        let mapleader=","
+        let mapleader="/"
 
         nmap <leader>r :so ~/.vimrc<CR>
 
     "" PLUGIN CONFIGURATION ""
+
+        " Competition
+            
+            " CodeForces
+            
+				let g:CodeForcesCount = 40
+				let g:CodeForcesContestId = 518
+				let g:CodeForcesUpdateInterval = 1
+				let g:CodeForcesCountOfSubmits = 10
+				let g:CodeForcesShowUnofficial = 1
+				let g:CodeForcesFriends = 1
+				let g:CodeForcesCommandStandings = 'badd'
+				let g:CodeForcesCommandLoadTask = 'badd'
+				let g:CodeForcesCommandSubmission= 'badd'
+				let g:CodeForcesUsername = 'josegois'
+				let g:CodeForcesPassword = 'C0d3*p4sZ'
+                let g:CodeForcesContestFormat = '/index'
+				let g:CodeForcesInput = 'input'
+				let g:CodeForcesOutput = 'output'
+				let g:CodeForcesUserOutput = 'output_'
+				let g:CodeForcesTemplate = '/home/josegois/Dropbox/CODEF/main_template.cpp'
+
+				nmap <leader>cfr <ESC>:CodeForcesSet_R_ound
+				nmap <leader>cfS <ESC>:CodeForces_S_ubmission<CR>
+				nmap <leader>cfp <ESC>:CodeForces_P_revStandings<CR>
+				nmap <leader>cfn <ESC>:CodeForces_N_extStandings<CR>
+				nmap <leader>cfs <ESC>:CodeForces_S_tandings<CR>
+				nmap <leader>cff <ESC>:CodeForces_F_riendsSet<CR>
+				nmap <leader>cfu <ESC>:CodeForces_U_nofficial<CR>
+				nmap <leader>cfl <ESC>:CodeForces_L_oadTask
+				nmap <leader>cfP <ESC>:CodeForces_P_ageStandings
+				nmap <leader>cfR <ESC>:CodeForces_R_oomStandings<CR>
+				nmap <leader>cfA <ESC>:CodeForcesP_a_rseContest<CR>
+				nmap <leader>cft <ESC>:CodeForces_T_est<CR>
+				nmap <leader>cfcl <ESC>:CodeForces_C_ontest_L_ist<CR>
+				nmap <leader>cfcn <ESC>:CodeForces_C_ontestList_N_ext<CR>
+				nmap <leader>cfcp <ESC>:CodeForces_C_ontestList_P_rev<CR>
+				nmap <leader>cfF <ESC>:CodeForcesLoad_F_riends<CR>
+
+				noremap <S-F5> <ESC>:w<CR><ESC>:CodeForcesSubmit<CR>
+				noremap <S-F6> <ESC>:w<CR><ESC>:CodeForcesUserSubmissions<CR>
 
         " Alignment
 
@@ -96,10 +145,12 @@
         
             syntax enable
 
-            "set background=light
-            set background=dark
+            set background=light
+            "set background=dark
 
             colorscheme solarized
+            
+            map <leader>bg :ToggleBG<CR>
 
             let g:solarized_bold       = 1        "      1 | 0
             let g:solarized_contrast   = "high" " normal | high or low
@@ -111,19 +162,6 @@
             let g:solarized_visibility = "normal" " normal | high or low
 
             call togglebg#map("<a-A>")
-
-        " Vim-airline
-"
-
-            "" Vim colors for djferent users
-            "if $USER == "root"
-            "    let g:airline_theme = 'raven'
-            "else
-            "    let g:airline_theme = 'night_owl'
-            "endif
-
-            "let g:airline#extensions#tabline#enabled   = 1
-            "let g:airline#extensions#tabline#formatter = 'unique_tail'
 
         " Autosave
 
@@ -154,10 +192,22 @@
             let g:ycm_complete_in_strings = 1
             let g:ycm_filepath_completion_use_working_dir = 1
             let g:ycm_filepath_blacklist = {
-                  \ 'html': 0,
                   \ 'jsx': 1,
                   \ 'xml': 1,
                   \}
+
+        " Jedi Python Completion
+
+            let g:jedi#auto_initialization = 0
+            
+            let g:jedi#goto_command             = "<leader>d"
+            let g:jedi#goto_assignments_command = "<leader>g"
+            let g:jedi#goto_stubs_command       = "<leader>s"
+            let g:jedi#goto_definitions_command = ""
+            let g:jedi#documentation_command    = "K"
+            let g:jedi#usages_command           = "<leader>n"
+            let g:jedi#completions_command      = "<C-Space>"
+            let g:jedi#rename_command           = "<leader>r"
 
         " Syntastic - basic, edit after reading manual.
 
@@ -272,8 +322,8 @@
             nnoremap N Nzzzv
             nnoremap H 0
             nnoremap L $
-            nnoremap J 21jzz
-            nnoremap K 21kzz
+            nnoremap J 10jzz
+            nnoremap K 10kzz
 
             nnoremap <Space> za
             nnoremap <leader>z zMzvzz
