@@ -5,9 +5,9 @@
 #set-option -g prefix '
 
 #set prefix '
-unbind C-b
-set-option -g prefix "'"
-bind "'" send-prefix
+#unbind C-b
+#set-option -g prefix "'"
+#bind "'" send-prefix
 
 # New window
 unbind '"'

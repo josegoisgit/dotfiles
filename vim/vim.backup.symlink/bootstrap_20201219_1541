@@ -142,7 +142,6 @@ install_dotfiles () {
 
 prepare_vim (){
     clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    vim --cmd ":PluginInstall"
 }
 
 curl -L git.io/antigen > $DOTFILES_ROOT/zsh/antigen.zsh.symlink
@@ -151,8 +150,6 @@ success "download antigen.zsh.symlink"
 setup_gitconfig
 
 install_dotfiles
-
-prepare_vim
 
 # If we're on a Mac, let's install and setup homebrew.
 if [ "$(uname -s)" == "Darwin" ]

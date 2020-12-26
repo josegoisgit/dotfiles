@@ -2,6 +2,8 @@ set -g default-terminal "screen-256color"
 
 source-file $HOME'/.tmux-keybindings.conf'
 
+set-option -g prefix C-Space
+
 # don't rename windows automatically
 set-option -g allow-rename off
 
@@ -170,9 +172,6 @@ set -g mouse on
 		
 	# Open plugin configurations
 		set -g @open-S 'https://www.duckduckgo.com/'
-
-## UNBIND LEADER KEY
-	unbind "'"
 
 # NOTHING BELLOW
 # EOclipboardF

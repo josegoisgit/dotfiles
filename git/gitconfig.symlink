@@ -33,3 +33,6 @@
         default = simple
 [credential]
 	helper = cache
+[user]
+	name = josegoisgit
+	email = josegoismail@gmail.com
